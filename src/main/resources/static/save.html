@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>添加项目</title>
+    <link rel="stylesheet" href="bt/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="bt/css/bootstrap-theme.min.css"/>
+    <script type="text/javascript" src="bt/js/jquery.js"></script>
+    <script type="text/javascript" src="bt/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <form>
+            <div class="form-group">
+                <label for="exampleInputName1">项目名称</label>
+                <input type="text" class="form-control" id="exampleInputName1" placeholder="项目名称">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputCehuaren1">策划人</label>
+                <input type="text" class="form-control" id="exampleInputCehuaren1" placeholder="策划人">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputZijin1">项目资金</label>
+                <input type="integer" class="form-control" id="exampleInputZijin1" placeholder="项目资金">
+            </div>
+
+            <input id="sub" class="btn btn-success form-control" type="button" value="Submit">
+        </form>
+    </div>
+</body>
+</html>
+
+<script type="text/javascript">
+    $("#sub").click(
+        function(){
+            var xiangmuName = $("#exampleInputName1").val();
+            var xiangmuCehuaren = $("#exampleInputCehuaren1").val();
+            var xiangmuZijin = $("#exampleInputZijin1").val();
+
+            if( xiangmuName.length == 0 ){
+                alert("项目名称不能为空");
+                return;//不让程序继续执行
+            }
+            if( xiangmuCehuaren.length == 0 ){
+                alert("项目策划人不能为空");
+                return;//不让程序继续执行
+            }
+            if( xiangmuZijin.length == 0 ){
+                alert("项目资金不能为空");
+                return;//不让程序继续执行
+            }
+
+            var xiangmubiao = {
+                "xiangmuname":xiangmuName,
+                "xiangmuzijin":xiangmuZijin,
+                "cehuaren":xiangmuCehuaren
+            }
+
+            var xiangmubiaoHJson = JSON.stringify(xiangmubiao)
+
+            $.post({
+                    url:"xiangmubiao/save",
+                    data:xiangmubiaoHJson,
+                    contentType:"application/json",
+                    success: function (data) {
+                        alert(data)
+                    }
+            });
+
+        }
+    )
+</script>

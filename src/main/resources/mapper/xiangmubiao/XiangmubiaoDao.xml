@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace表示命名空间 -->
+<mapper namespace="com.springboot1.demo.xiangmubiao.dao.XiangmubiaoDao">
+    <select id="getAll" resultType="com.springboot1.demo.xiangmubiao.entity.XiangmubiaoEntity" parameterType="java.util.Map">
+        SELECT * FROM xiangmubiao
+    </select>
+
+    <delete id="delByXiangmuid" parameterType="java.lang.Integer">
+        delete from xiangmubiao where xiangmuid=${xiangmuid}
+    </delete>
+
+    <insert id="save" parameterType="com.springboot1.demo.xiangmubiao.entity.XiangmubiaoEntity">
+        INSERT INTO `sawsmis`.`xiangmubiao` (`xiangmuid`, `xiangmuname`, `xiangmuzijin`, `cehuaren`)
+        VALUES (NULL , #{xiangmuname}, #{xiangmuzijin}, #{cehuaren});
+
+    </insert>
+    
+    <select id="getXiangmubiaoByXiangmuid" parameterType="java.lang.Integer" resultType="com.springboot1.demo.xiangmubiao.entity.XiangmubiaoEntity">
+        select * from xiangmubiao where xiangmuid = ${xiangmuid}
+    </select>
+
+    <update id="updateXiangmubiaoByXiangmuid" parameterType="com.springboot1.demo.xiangmubiao.entity.XiangmubiaoEntity">
+        UPDATE `sawsmis`.`xiangmubiao`
+        SET  `xiangmuname`='${xiangmuname}', `cehuaren`='${cehuaren}',`xiangmuzijin`=${xiangmuzijin}
+        WHERE (`xiangmuid`=${xiangmuid});
+    </update>
+</mapper>

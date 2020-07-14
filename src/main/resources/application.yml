@@ -1,0 +1,12 @@
+server:
+  port: 8060
+  servlet:
+    context-path: /pm
+spring:
+  datasource:
+    username: root
+    password: 721721aa
+    url: jdbc:mysql://localhost:3306/sawsmis?useUnicode=true&characterEncoding=utf8&allowMultiQueries=true&serverTimezone=GMT%2B8&useSSL=false
+    driver-class-name: com.mysql.cj.jdbc.Driver
+mybatis:
+    mapper-locations: classpath:mapper/**/*.xml
